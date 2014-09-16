@@ -13,21 +13,15 @@ function MyApp()
         };
 }
 
-var myApp = {
-        version: "v1.0",
-        setStatus: function(message)
-        {
-                $("#app>footer").text(message);
-        },
-        start: function()
-        {
-                $("#app>header").append(this.version);
-                this.setStatus("ready");
-        };
-};
-
-$(function() {
-        window.app = new MyApp(); 
-        window.app.start(); 
-}); 
-
+//var myApp = {
+//        version: "v1.0",
+//        setStatus: function(message)
+//        {
+//                $("#app>footer").text(message);
+//        },
+//        start: function()
+//        {
+//                $("#app>header").append(this.version);
+//                this.setStatus("ready");
+//        };
+//};

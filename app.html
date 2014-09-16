@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Task@Hand</title>
+        <title>app</title>
         <link href="app.css" rel="StyleSheet" />
-        <script src="app.js"></script>
-        <link href="taskAtHand.css" rel="StyleSheet" />
-        <!--
         <script src="lib/jquery-1.11.1.min.js"></script>
+        <script src="app.js"></script>
+        <!--
         <script src="taskAtHand.js"></script>
         -->
     </head>
     <body>
+        <p id="xx">hello ss</p>
         <div id="app">
             <header>app</header>
             <div id="main">main</div>
             <footer></footer>
         </div>
+        <script>
+            //document.getElementById("xx").innerHTML = "world"; 
+            $("p").text("world xx")
+            $(document).ready(
+                $(function(){
+                    window.app = new MyApp(); 
+                    window.app.start(); 
+                })
+            ); 
+        </script>
     </body>
 </html>
 
