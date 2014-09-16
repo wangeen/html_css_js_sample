@@ -42,3 +42,18 @@ button
         margin: 1em;
 }
 
+#task-list .task .tools
+{
+    display: inline-block; 
+}
+
+#task-list .task .tools button
+{
+    margin: 0; 
+    padding: 0; 
+    width: 1.25em; 
+    height: 1.25em; 
+    border: none; 
+}
+
+

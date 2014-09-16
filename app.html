@@ -17,12 +17,25 @@
                     <label for="new-task-name">Add a task</label>
                     <input type="text" id="new-task-name" title="Enter a task name" placeholder="Enter a task name"/>
                 </div>
+                <!--use hide template and then JS copy it, and this will make JS more readable-->
+                <div id="templates" class="hidden">
+                    <ul id="task-template">
+                        <li class="task">
+                        <div class="tools">
+                            <button class="delete" title="Delete">X</button>
+                            <button class="move-up" title="Up">^</button>
+                            <button class="move-down" title="Down">V</button>
+                        </div>
+                        <span class="task-name"></span>
+                        </li>
+                    </ul>
+                </div>
                 <ul id="task-list"></ul>
             </div>
             <footer></footer>
         </div>
         <script>
-            //document.getElementById("xx").innerHTML = "world"; 
+            document.getElementById("task-list").innerHTML = "Not Task"; 
             $(document).ready(
                 $(function(){
                     window.app = new MyApp(); 
