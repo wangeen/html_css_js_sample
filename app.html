@@ -10,15 +10,19 @@
         -->
     </head>
     <body>
-        <p id="xx">hello ss</p>
         <div id="app">
             <header>app</header>
-            <div id="main">main</div>
+            <div id="main">
+                <div id="add-task">
+                    <label for="new-task-name">Add a task</label>
+                    <input type="text" id="new-task-name" title="Enter a task name" placeholder="Enter a task name"/>
+                </div>
+                <ul id="task-list"></ul>
+            </div>
             <footer></footer>
         </div>
         <script>
             //document.getElementById("xx").innerHTML = "world"; 
-            $("p").text("world xx")
             $(document).ready(
                 $(function(){
                     window.app = new MyApp(); 
