@@ -1,70 +1,76 @@
 "use strict";
-function addTask(){ // add task to list
-    var taskName = $("#new-task-name").val(); 
-    if(taskName == 0) return; 
-    // important the space between template and task must keep
-    var $task= $("#task-template .task").clone()
-    $("span.task-name", $task).text(taskName); 
-    $("#task-list").append($task); 
-
-    $("button.delete", $task).click(
-        function(){
-            $task.remove();     
-        }
-    )
-    $("button.move-up", $task).click(
-        function(){
-            $task.insertBefore($task.prev());     
-        }
-    )
-    $("button.move-down", $task).click(
-        function(){
-            $task.insertAfter($task.next());     
-        }
-    )
-
-
-//    var newItem = $("#new-task-name").val(); 
-//    if(newItem){
-//        var $task = $("<li></li>"); 
-//        var $delete = $("<button class='delete'>X</button>"); 
-//        var $moveUp = $("<button class='moveUp'>^</button>"); 
-//        var $moveDown = $("<button class='moveDown'>V</button>"); 
-//        $task.append($delete)
-//            .append($moveUp)
-//            .append($moveDown)
-//            .append("<span class='task-name'>"+newItem+"</span>"); 
-//        $delete.click( // very tricky,  how can delete parent DOM
-//            function(){
-//                $task.remove(); 
-//            }
-//        ); 
-//        $moveUp.click(
-//            function(){
-//                $task.insertBefore($task.prev()); 
-//            }
-//        )
-//        $moveDown.click(
-//            function(){
-//                $task.insertAfter($task.next()); 
-//            }
-//        )
-//
-//        $("#task-list").append($task); 
-//
-//        $("#new-task-name").val("").focus(); 
-//    }
-}
 
 function MyApp()
 {
-    var version = "v1.0";
+    function deleteTask($task){
+        $task.remove();     
+        //saveTaskList(); 
+    }
+
+    function moveTask($task, moveUp){
+        if(moveUp){
+            $task.insertBefore($task.prev());     
+        }else{
+
+            $task.insertAfter($task.next());     
+        }
+        saveTaskList(); 
+    }
+
+    function addTask(){ // add task to list
+        var taskName = $("#new-task-name").val(); 
+        if(taskName == 0) return; 
+        // important the space between template and task must keep
+        var $task= $("#task-template .task").clone()
+        $("span.task-name", $task).text(taskName); 
+        $("#task-list").append($task); 
+        console.log("xxx"); 
+        var msg = $("#task-list").html(); 
+        console.log(msg); 
+        //alert($("#task-list").html()); 
+        //saveTaskList(); 
+        $("button.delete", $task).click(
+            function(){
+                deleteTask($task);
+            };
+        )
+
+        //$("button.move-up", $task).click(
+        //    moveTask($task, true)
+        //)
+        //$("button.move-down", $task).click(
+        //    moveTask($task, false)
+        //)
+    }
+
+    var version = "v1.1";
+
     function setStatus(message)
     {
         $("#app>footer").text(message);
     }
+
+    var appStorage = new AppStorage("app"); 
+    function saveTaskList(){
+        var tasks = []; 
+        $("#task-list .task span.task-name").each(function(){
+            tasks.push($(this).text())
+        }); 
+        appStorage.setValue("taskList", tasks); 
+    }
+
+    function loadTaskList(){
+        var tasks = appStorage.getValue("taskList"); 
+        if(tasks){
+            for(var i in tasks){
+                addTask(i); 
+            }
+        }
+    }
+
     this.start = function()
     {
+        
         $("#new-task-name").keypress(
             function(e){
                 if(e.which==13){ // 13: Enter pressed
@@ -74,6 +80,7 @@ function MyApp()
             }
         ).focus(); 
         $("#app>header").append(version);
+        //loadTaskList(); 
         setStatus("ready");
     };
 }
