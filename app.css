@@ -23,6 +23,10 @@ button
 {
         margin: 4px;
         background-color: #bbc;
+        background: -webkit-linear-gradient(top, #bbc, #558);
+        background: -moz-linear-gradient(top, #bbc, #558);
+        background: -ms-linear-gradient(top, #bbc, #558);
+        background: linear-gradient(top, #bbc, #558);
 }
 #app>header
 {
@@ -39,21 +43,56 @@ button
 }
 #main
 {
-        margin: 1em;
+    max-width: 25em;
+    min-width: 9em;
+    margin: 1em auto;
 }
+
 
 #task-list .task .tools
 {
     display: inline-block; 
 }
 
-#task-list .task .tools button
+#task-list .task
 {
-    margin: 0; 
-    padding: 0; 
-    width: 1.25em; 
-    height: 1.25em; 
-    border: none; 
+    position: relative;
+    list-style: none;
+    padding: 0.25em;
+    margin: 0.25em;
+    background-color: beige;
+    border-radius: 4px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+
+    -webkit-transition: all 0.1s ease; 
+    -moz-transition: all 0.1s ease; 
+    -o-transition: all 0.1s ease; 
+    transition: all 0.1s ease; 
+
 }
 
+
+#task-list .task .tools
+{
+    position: absolute;
+    top: 0em;
+    right: 0.25em;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+#task-list .task.selected
+{
+    padding: 0.6em 0.5em; 
+    border: 2px solid orange; 
+    border-radius: 6px; 
+    background-color: white; 
+}
+
+#new-task-name
+{
+    font-size:1em;
+    display:block;
+    width:98%;
+}
 

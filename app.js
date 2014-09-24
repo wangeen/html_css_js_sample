@@ -35,6 +35,16 @@ function MyApp()
         }
     }
 
+    function onSelectTask($task){
+        if ($task) {
+            // Unselect other tasks
+            $task.siblings(".selected").removeClass("selected"); 
+            // Select this task
+            $task.addClass("selected"); 
+        }
+
+    }
+
     function addTask(taskName){ // add task to list
         if (taskName === undefined){
             taskName = $("#new-task-name").val(); 
@@ -47,6 +57,12 @@ function MyApp()
         var msg = $("#task-list").html();
         console.log(msg);
         saveTaskList(); 
+
+        $task.click(
+            function(){
+                onSelectTask($task);    // animation
+            }
+        )
 
         $("button.delete", $task).click(
             function(){
